@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import './App.scss';
+import { registerUser } from './services/AuthClient';
 
 
 function App() {
@@ -14,14 +15,14 @@ function App() {
     setEmail(event.currentTarget.value)
   }
 
-  function handleRegister () {
-    // submit user
+  async function handleRegister () {
+    await registerUser(email, password)
   }
 
   return (
     <div className='App'>
         <label htmlFor='email'>Email:</label>
-        <input type='text' value={email} onChange={handleEmailChange}/>
+        <input type='text' aria-label='email' value={email} onChange={handleEmailChange}/>
         <label htmlFor='email'>Password:</label>
         <input type='text' value={password} onChange={handlePasswordChange}/>
         <button type='submit' onClick={handleRegister}>Register</button>

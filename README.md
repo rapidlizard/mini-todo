@@ -1,4 +1,4 @@
-## Client:
+## Server:
  - GET /auth/user
     - SessionService.getById
         - 401
