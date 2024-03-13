@@ -1,4 +1,4 @@
-Client:
+## Client:
  - GET /auth/user
     - SessionService.getById
         - 401
@@ -42,7 +42,7 @@ Client:
     - req.user = User 
 
 
-App:
+## App:
  - SessionContext
     - Routes
         - /
@@ -50,6 +50,25 @@ App:
             - main [task-list + task-form]
         - /register
         - /login
+
+### Components:
+< Button />
+- Submit
+    - login
+    - register
+    - add task
+- Delete
+    - task
+    - logout
+
+< Input />
+- email
+- password
+- task title
+- task description
+
+< Task-list />
+- < Task />        
         
 
 Frontend React + TypeScript
