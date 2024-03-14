@@ -1,29 +1,31 @@
-import { ReactNode, createContext, useContext, useState } from "react";
-import User from "../types/User";
+import { ReactNode, createContext, useContext } from 'react';
+import { User } from '../types/User';
 
 type AuthContext = {
   user: User | null;
   setUser: (user: User | null) => void;
-}
+};
 
-type Props = {
-  children?: ReactNode
-}
-  
+type Props = AuthContext & {
+  children?: ReactNode;
+};
+
 const AuthContext = createContext<AuthContext>({} as AuthContext);
 
-export const AuthProvider = ({children}: Props) => {
-  const [user, setUser] = useState<User | null>(null)
-
-  return <AuthContext.Provider value={{user, setUser}}>{children}</AuthContext.Provider>
-}
+export const AuthProvider = (props: Props) => {
+  return (
+    <AuthContext.Provider value={{ user: props.user, setUser: props.setUser }}>
+      {props.children}
+    </AuthContext.Provider>
+  );
+};
 
 export const useAuthContext = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
 
   if (!context.setUser) {
-    throw new Error('useAuthContext must be used inside of the AuthProvider')
+    throw new Error('useAuthContext must be used inside of the AuthProvider');
   }
 
   return context;
-}
+};
