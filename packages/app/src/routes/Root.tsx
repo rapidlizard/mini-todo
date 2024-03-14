@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { useAuthContext } from '../contexts/AuthContext';
 import { logoutUser } from '../services/AuthClient';
 import './Root.scss';
+import Button from '../components/Button';
 
 export default function Root() {
   const navigate = useNavigate();
@@ -26,9 +27,9 @@ export default function Root() {
     <>
       <Header>
         {user && <p>Hello, {user.email}</p>}
-        {user && <button onClick={handleLogoutClick}>Logout</button>}
-        {!user && <button onClick={handleRegisterClick}>Register</button>}
-        {!user && <button onClick={handleLoginClick}>Login</button>}
+        {user && <Button onClick={handleLogoutClick}>Logout</Button>}
+        {!user && <Button onClick={handleRegisterClick}>Register</Button>}
+        {!user && <Button onClick={handleLoginClick}>Login</Button>}
       </Header>
       <div className="container">
         <Outlet />

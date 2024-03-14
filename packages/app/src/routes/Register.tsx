@@ -3,6 +3,8 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { registerUser } from '../services/AuthClient';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
+import Button from '../components/Button';
+import BackButton from '../components/BackButton';
 
 export default function Register() {
   const { setUser } = useAuthContext();
@@ -28,15 +30,14 @@ export default function Register() {
 
   return (
     <>
-      <Input label="Email:" value={email} changeHandler={handleEmailChange} />
+      <BackButton />
+      <Input label="Email:" value={email} onChange={handleEmailChange} />
       <Input
         label="Password:"
         value={password}
-        changeHandler={handlePasswordChange}
+        onChange={handlePasswordChange}
       />
-      <button type="submit" onClick={handleRegister}>
-        Register
-      </button>
+      <Button onClick={handleRegister}>Register</Button>
     </>
   );
 }

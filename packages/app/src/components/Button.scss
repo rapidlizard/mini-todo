@@ -1,0 +1,20 @@
+button {
+  min-width: 5em;
+  margin-right: 5px;
+  padding: 5px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+    color: white;
+    transition: 200ms;
+  }
+
+  &:checked {
+    background-color: black;
+    color: white;
+  }
+}
