@@ -1,9 +1,11 @@
 import React, { FormEvent, useState } from 'react';
 import './App.scss';
 import { registerUser } from './services/AuthClient';
+import { useAuthContext } from './context/AuthContext';
 
 
 function App() {
+  const {user, setUser} = useAuthContext()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,11 +18,14 @@ function App() {
   }
 
   async function handleRegister () {
-    await registerUser(email, password)
+    const user = await registerUser(email, password);
+
+    setUser(user);
   }
 
   return (
     <div className='App'>
+      <h2>{user?.email}</h2>
         <label htmlFor='email'>Email:</label>
         <input type='text' aria-label='email' value={email} onChange={handleEmailChange}/>
         <label htmlFor='email'>Password:</label>
