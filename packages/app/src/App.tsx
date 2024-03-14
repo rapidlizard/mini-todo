@@ -36,7 +36,7 @@ function App() {
 
   return (
     <AuthProvider user={user} setUser={setUser}>
-      <div className="App">
+      <div className="container">
         <RouterProvider router={router} />
       </div>
     </AuthProvider>
