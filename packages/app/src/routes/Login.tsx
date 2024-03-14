@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useAuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/AuthClient';
+import Input from '../components/Input';
 
 export default function Login() {
   const { setUser } = useAuthContext();
@@ -27,15 +28,12 @@ export default function Login() {
 
   return (
     <>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="text"
-        aria-label="email"
-        value={email}
-        onChange={handleEmailChange}
+      <Input label="Email:" value={email} changeHandler={handleEmailChange} />
+      <Input
+        label="Password:"
+        value={password}
+        changeHandler={handlePasswordChange}
       />
-      <label htmlFor="email">Password:</label>
-      <input type="text" value={password} onChange={handlePasswordChange} />
       <button type="submit" onClick={handleLogin}>
         Login
       </button>
