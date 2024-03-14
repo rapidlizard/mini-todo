@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import { createUser, getUserByEmail, getUserById } from './services/UserService';
 import { createSessionForUser, deleteSession, getSession } from './services/SessionService';
 import cookieParser from 'cookie-parser'
+import { getTasks } from './services/TaskService';
 
 const app = express();
 const PORT = 8080;
@@ -62,6 +63,13 @@ app.get('/auth/logout', (req, res) => {
 
   res.clearCookie('session');
   res.sendStatus(200);
+})
+
+app.get('/tasks', (req, res) => {
+  const tasks = getTasks();
+
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(tasks));
 })
 
 

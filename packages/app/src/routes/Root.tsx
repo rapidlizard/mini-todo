@@ -4,10 +4,15 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { logoutUser } from '../services/AuthClient';
 import './Root.scss';
 import Button from '../components/Button';
+import { useEffect, useState } from 'react';
+import { TasksProvider } from '../contexts/TasksContext';
+import Task from '../types/Task';
+import { getTasks } from '../services/TaskClient';
 
 export default function Root() {
   const navigate = useNavigate();
   const { user, setUser } = useAuthContext();
+  const [tasks, setTasks] = useState<Task[] | null>([]);
 
   const handleRegisterClick = () => {
     navigate('/register');
@@ -23,6 +28,10 @@ export default function Root() {
     setUser(null);
   };
 
+  useEffect(() => {
+    getTasks().then(setTasks);
+  }, []);
+
   return (
     <>
       <Header>
@@ -31,9 +40,11 @@ export default function Root() {
         {!user && <Button onClick={handleRegisterClick}>Register</Button>}
         {!user && <Button onClick={handleLoginClick}>Login</Button>}
       </Header>
-      <div className="container">
-        <Outlet />
-      </div>
+      <TasksProvider tasks={tasks} setTasks={setTasks}>
+        <div className="container">
+          <Outlet />
+        </div>
+      </TasksProvider>
     </>
   );
 }

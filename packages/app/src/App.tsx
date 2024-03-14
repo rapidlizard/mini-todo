@@ -6,6 +6,7 @@ import { getLoggedUser } from './services/AuthClient';
 import { User } from './types/User';
 import { useEffect, useState } from 'react';
 import Login from './routes/Login';
+import Tasks from './routes/Tasks';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -25,7 +26,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: <h3>this is the list</h3>,
+          element: <Tasks />,
         },
         {
           path: '/register',
