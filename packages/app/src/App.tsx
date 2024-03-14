@@ -1,4 +1,3 @@
-import './App.scss';
 import { AuthProvider } from './contexts/AuthContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Register from './routes/Register';
@@ -23,22 +22,22 @@ function App() {
     {
       path: '/',
       element: <Root />,
-    },
-    {
-      path: '/register',
-      element: <Register />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
+      children: [
+        {
+          path: '/register',
+          element: <Register />,
+        },
+        {
+          path: '/login',
+          element: <Login />,
+        },
+      ],
     },
   ]);
 
   return (
     <AuthProvider user={user} setUser={setUser}>
-      <div className="container">
-        <RouterProvider router={router} />
-      </div>
+      <RouterProvider router={router} />
     </AuthProvider>
   );
 }
