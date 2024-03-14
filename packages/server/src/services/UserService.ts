@@ -1,6 +1,12 @@
 import { User } from "../types/User";
 
-let users: User[] = []
+let users: User[] = [
+  {
+    id: 1,
+    email: 'hello@email.com',
+    password: '123'
+  }
+]
 
 export function createUser (email: string, password: string): User {
   const newUser = {
@@ -16,6 +22,10 @@ export function createUser (email: string, password: string): User {
   return newUser;
 }
 
-export function getUser (id: number): User | undefined{
+export function getUserById (id: number): User | undefined{
   return users.find(user => user.id === id);
+}
+
+export function getUserByEmail (email: string): User | undefined{
+  return users.find(user => user.email === email);
 }

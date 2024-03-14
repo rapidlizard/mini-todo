@@ -5,15 +5,20 @@ export default function Root() {
   const navigate = useNavigate();
   const { user } = useAuthContext();
 
-  const handleClick = () => {
+  const handleRegisterClick = () => {
     navigate('/register');
+  };
+
+  const handleLoginClick = () => {
+    navigate('/login');
   };
 
   return (
     <>
       <h1>Main page</h1>
-
-      {!user && <button onClick={handleClick}>Register</button>}
+      {user && <h3>Hello {user.email}</h3>}
+      {!user && <button onClick={handleRegisterClick}>Register</button>}
+      {!user && <button onClick={handleLoginClick}>Login</button>}
     </>
   );
 }

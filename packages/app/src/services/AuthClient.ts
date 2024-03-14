@@ -28,3 +28,20 @@ export async function getLoggedUser (): Promise<User> {
 
   return body as User;
 }
+
+export async function loginUser(email: string, password: string): Promise<User> {
+  const user = {email, password};
+
+  const response = await fetch(API_BASE_URL + '/auth/login', {
+      method: 'POST', 
+      body: JSON.stringify(user),
+      credentials: 'include', 
+      headers: {
+        "Content-Type": "application/json",
+      }
+  });
+
+  const body = await response.json();
+
+  return body as User;
+}

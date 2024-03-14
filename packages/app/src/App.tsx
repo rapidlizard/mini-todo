@@ -6,6 +6,7 @@ import Root from './routes/Root';
 import { getLoggedUser } from './services/AuthClient';
 import { User } from './types/User';
 import { useEffect, useState } from 'react';
+import Login from './routes/Login';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -26,6 +27,10 @@ function App() {
     {
       path: '/register',
       element: <Register />,
+    },
+    {
+      path: '/login',
+      element: <Login />,
     },
   ]);
 

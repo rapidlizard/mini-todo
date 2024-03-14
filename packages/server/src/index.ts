@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { createUser, getUser } from './services/UserService';
+import { createUser, getUserByEmail, getUserById } from './services/UserService';
 import { createSessionForUser, getSession } from './services/SessionService';
 import cookieParser from 'cookie-parser'
 
@@ -21,11 +21,27 @@ app.get('/auth/user', (req, res) => {
   if (!session) {
     res.sendStatus(404);
   } else {
-    const user = getUser(session.userId);
+    const user = getUserById(session.userId);
 
     res.send(JSON.stringify({id: user?.id, email: user?.email}));
   }
 });
+
+app.post('/auth/login', (req, res) => {
+  const user = getUserByEmail(req.body.email);
+
+  if(!user) {
+    res.sendStatus(404)
+  } else if (user.password !== req.body.password) {
+    res.sendStatus(401)
+  } else {
+    const newSession = createSessionForUser(user.id);
+
+    res.setHeader('Content-Type', 'application/json');
+    res.cookie('session', newSession.id);
+    res.send(JSON.stringify({id: user?.id, email: user?.email}));
+  }
+})
 
 app.post('/auth/register', (req, res) => {
   const newUser = createUser(req.body.email, req.body.password);

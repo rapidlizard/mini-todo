@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react';
 import { useAuthContext } from '../contexts/AuthContext';
-import { registerUser } from '../services/AuthClient';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/AuthClient';
 
-export default function Register() {
+export default function Login() {
   const { setUser } = useAuthContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,8 +17,8 @@ export default function Register() {
     setEmail(event.currentTarget.value);
   }
 
-  async function handleRegister() {
-    const user = await registerUser(email, password);
+  async function handleLogin() {
+    const user = await loginUser(email, password);
 
     setUser(user);
 
@@ -36,8 +36,8 @@ export default function Register() {
       />
       <label htmlFor="email">Password:</label>
       <input type="text" value={password} onChange={handlePasswordChange} />
-      <button type="submit" onClick={handleRegister}>
-        Register
+      <button type="submit" onClick={handleLogin}>
+        Login
       </button>
     </>
   );
