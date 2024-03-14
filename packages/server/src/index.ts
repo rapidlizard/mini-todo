@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { createUser, getUserByEmail, getUserById } from './services/UserService';
-import { createSessionForUser, getSession } from './services/SessionService';
+import { createSessionForUser, deleteSession, getSession } from './services/SessionService';
 import cookieParser from 'cookie-parser'
 
 const app = express();
@@ -16,10 +16,14 @@ app.use(cookieParser());
 
 
 app.get('/auth/user', (req, res) => {
+  if (!req.cookies.session) {
+    res.sendStatus(404);
+  } 
+
   const session = getSession(req.cookies.session);
   
   if (!session) {
-    res.sendStatus(404);
+    res.clearCookie('session');
   } else {
     const user = getUserById(session.userId);
 
@@ -51,6 +55,13 @@ app.post('/auth/register', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.cookie('session', newSession.id);
   res.send(JSON.stringify({id: newUser?.id, email: newUser?.email}));
+})
+
+app.get('/auth/logout', (req, res) => {
+  deleteSession(req.cookies.id);
+
+  res.clearCookie('session');
+  res.sendStatus(200);
 })
 
 

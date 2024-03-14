@@ -3,7 +3,7 @@ import { User } from "../types/User";
 let users: User[] = [
   {
     id: 1,
-    email: 'hello@email.com',
+    email: 'plove@email.com',
     password: '123'
   }
 ]

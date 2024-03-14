@@ -45,3 +45,12 @@ export async function loginUser(email: string, password: string): Promise<User> 
 
   return body as User;
 }
+
+export async function logoutUser() {
+  const response = await fetch(API_BASE_URL + '/auth/logout' , {
+    method: 'GET', 
+    credentials: 'include'
+  });
+
+  return
+}
