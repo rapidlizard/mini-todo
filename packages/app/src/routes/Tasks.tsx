@@ -1,15 +1,16 @@
+import TaskList from '../components/TaskList';
 import { useTasksContext } from '../contexts/TasksContext';
+import './Tasks.scss';
 
 const Tasks = () => {
   const { tasks } = useTasksContext();
 
-  const renderList = () =>
-    tasks?.map((task) => <p key={task.id}>{task.title}</p>);
-
   return (
     <>
       <h3>Task list:</h3>
-      {renderList()}
+      <div className="tasks">
+        {tasks.length !== 0 ? <TaskList tasks={tasks} /> : <p>List is empty</p>}
+      </div>
     </>
   );
 };

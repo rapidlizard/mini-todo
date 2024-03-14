@@ -12,7 +12,7 @@ import { getTasks } from '../services/TaskClient';
 export default function Root() {
   const navigate = useNavigate();
   const { user, setUser } = useAuthContext();
-  const [tasks, setTasks] = useState<Task[] | null>([]);
+  const [tasks, setTasks] = useState<Task[] | []>([]);
 
   const handleRegisterClick = () => {
     navigate('/register');

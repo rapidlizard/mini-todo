@@ -2,8 +2,8 @@ import { ReactNode, createContext, useContext } from 'react';
 import Task from '../types/Task';
 
 type TasksContext = {
-  tasks: Task[] | null;
-  setTasks: (tasks: Task[] | null) => void;
+  tasks: Task[] | [];
+  setTasks: (tasks: Task[] | []) => void;
 };
 
 type Props = TasksContext & {
