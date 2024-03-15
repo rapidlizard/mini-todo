@@ -41,7 +41,7 @@ npm run serve
 - Write unit and component tests for server and app
 - Add MongoDB to replace in memory DB
 - Add update and delete functionality to tasks
-- Only allow task creation for logged in users
+- Only allow logged in users to create/update/delete tasks
 
 ### Server:
 
