@@ -2,15 +2,10 @@ import { useEffect } from 'react';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import { useTasksContext } from '../contexts/TasksContext';
-import { createTask } from '../services/TaskClient';
 import './Tasks.scss';
 
 const Tasks = () => {
   const { tasks } = useTasksContext();
-
-  useEffect(() => {
-    console.log(tasks);
-  });
 
   return (
     <>

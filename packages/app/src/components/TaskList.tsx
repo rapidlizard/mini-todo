@@ -7,7 +7,7 @@ type Props = {
 
 const TaskList = (props: Props) => {
   const renderList = () =>
-    props.tasks?.map((task) => <p key={task.id}>{task.title}</p>);
+    props.tasks?.map((task) => <p key={task.id}>{task.title}</p>).reverse();
 
   return <div className="task-list">{renderList()}</div>;
 };
