@@ -1,14 +1,22 @@
+import { useEffect } from 'react';
+import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import { useTasksContext } from '../contexts/TasksContext';
+import { createTask } from '../services/TaskClient';
 import './Tasks.scss';
 
 const Tasks = () => {
   const { tasks } = useTasksContext();
 
+  useEffect(() => {
+    console.log(tasks);
+  });
+
   return (
     <>
       <h3>Task list:</h3>
       <div className="tasks">
+        <TaskForm />
         {tasks.length !== 0 ? <TaskList tasks={tasks} /> : <p>List is empty</p>}
       </div>
     </>

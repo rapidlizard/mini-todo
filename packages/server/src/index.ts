@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import { createUser, getUserByEmail, getUserById } from './services/UserService';
 import { createSessionForUser, deleteSession, getSession } from './services/SessionService';
 import cookieParser from 'cookie-parser'
-import { getTasks } from './services/TaskService';
+import { createTask, getTasks } from './services/TaskService';
 
 const app = express();
 const PORT = 8080;
@@ -70,6 +70,13 @@ app.get('/tasks', (req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(tasks));
+})
+
+app.post('/task', (req, res) => {
+  const newTask = createTask(req.body.title);
+
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(newTask));
 })
 
 

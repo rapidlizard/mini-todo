@@ -3,4 +3,6 @@ type Task = {
   title: string;
 }
 
+export type TaskPayload = Omit<Task, 'id'>;
+
 export default Task;

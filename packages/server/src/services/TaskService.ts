@@ -18,3 +18,14 @@ let tasks: Task[] = [
 export function getTasks(): Task[] | [] {
   return tasks;
 };
+
+export const createTask = (title: string): Task => {
+  const task = {
+    id: tasks.length + 1,
+    title: title
+  }
+
+  tasks.push(task);
+
+  return task;
+}
