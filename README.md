@@ -6,7 +6,11 @@
 
 **Backend:** NodeJs + TypeScript + Express
 
-For the database I decided to store things in memory for the time being so I didn't loose time with setting up and configuring a database engine. If I had the time I would have liked to connect it to MongoDB as it's quite simple and straight forward for a small application like this.
+For the database I decided to store things in memory for the time being so I didn't loose time with setting up and configuring a database engine. If I had the time I would have liked to connect it to **MongoDB** with model repositories and replace the `Array.push(item)`. I would choose MongoDB as it's quite straight forward to use for a small application like this.
+
+Right now there is no **test coverage**. I prioritised getting the features happy paths working at the most basic level, then my next steps would be to add **test coverage** and refactor if necessary. I decided not to practice **TDD** from the start because I find that applying **TDD** on a small application like this is slow and doesn't add much value as there is no real functionality yet.
+
+I would also want to improve the **user experience** and add **error handling**. Right now I just have the happy paths covered. So I don't have any **input checking** and **error handling** incase a user gets the password wrong or doesn't write a valid email. Also for security reasons it's always a good idea to **escape inputs**.
 
 ### To run the app and server:
 
