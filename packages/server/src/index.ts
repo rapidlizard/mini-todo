@@ -58,7 +58,7 @@ app.post('/auth/register', (req, res) => {
   res.send(JSON.stringify({id: newUser?.id, email: newUser?.email}));
 })
 
-app.get('/auth/logout', (req, res) => {
+app.delete('/auth/logout', (req, res) => {
   deleteSession(req.cookies.id);
 
   res.clearCookie('session');

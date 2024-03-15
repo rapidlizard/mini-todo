@@ -47,10 +47,8 @@ export async function loginUser(email: string, password: string): Promise<User> 
 }
 
 export async function logoutUser() {
-  const response = await fetch(API_BASE_URL + '/auth/logout' , {
-    method: 'GET', 
+  await fetch(API_BASE_URL + '/auth/logout' , {
+    method: 'DELETE', 
     credentials: 'include'
   });
-
-  return
 }
